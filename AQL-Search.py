@@ -34,6 +34,7 @@ gmail_password = 'P@$$w0rd'
 sender_name = 'TED SIEM'
 receiver_mail = 'soc@comp.eg'
 mail_subject = 'WAF Denied Attacks Last 12 Hours'
+mail_body = 'Dear Team,\nKindly check the denied WAF attacks in the last 12 hours'
 file_name = 'waf_denied_attacks_last_12.csv' # CSV File Will be Created with This Name (If NOT Exist)
 time_to_wait = 30 # Waiting Time to Check for Query Completion Status
 
@@ -129,7 +130,7 @@ while True:
 		print('[+] Retreiving Search Result...')
 		r = requests.get('https://'+ip+'/api/ariel/searches/'+search_id+'/results',verify=False,headers=headers)
 		if toCSV():
-			send_gmail(receiver_mail, mail_subject, '', files=[file_name])
+			send_gmail(receiver_mail, mail_subject, mail_body, files=[file_name])
 			print('[+] Success')
 		exit()
 	else:
